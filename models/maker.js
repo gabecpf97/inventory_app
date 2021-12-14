@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const MakerSchema = new Schema(
     {
         name: {type: String, require: true},
-        esatblished_date: {type: Date, required: true},
+        established_year: {type: Number, required: true},
         logo: {type: String, require: true},
     }
 );
