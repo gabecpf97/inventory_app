@@ -8,7 +8,9 @@ const CarSchema = new Schema(
         type: {type: Schema.Types.ObjectId, ref: 'Type', required:true},
         price: {type: Number, required: true},
         picture: {type: String, required:true},
+        description: {type: String, required: true},
         release_year: {type: Number, required:true},
+        number_in_stock: {type: Number, required: true}
     }
 );
 
