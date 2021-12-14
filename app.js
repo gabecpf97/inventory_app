@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 const mongoose = require('mongoose');
-const dev_db_url = 'mongodb+srv://admin:<password>@cluster0.lcnko.mongodb.net/inventory?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://admin:my_inventory@cluster0.lcnko.mongodb.net/inventory?retryWrites=true&w=majority';
 const mongoDB = dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;

@@ -1,0 +1,12 @@
+<div class="content">
+    <h1>All Cars</h1>
+    <ul class="cars">
+        <% car_list.forEach(car => { %>
+            <p><%= car.name %></p>
+            <p><%= car.maker.name %></p>
+            <p><%= car.type.name %></p>
+            <p><%= car.picture %></p>
+            <p><%= car.number_in_stock %></p>
+        <% }); %>
+    </ul>
+</div>
