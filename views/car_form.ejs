@@ -13,9 +13,9 @@
                 <option  value="" selected="true">Select a Maker</option>
                 <% all_maker.forEach(maker => { %>
                     <% if (undefined !== typeof(car)) { %>
-                        <option value="<%=maker.name%>"><%= maker.name%></option>
+                        <option value="<%=maker.id%>"><%= maker.name%></option>
                     <% } else { %>
-                        <option value="<%=maker.name%>"
+                        <option value="<%=maker.id%>"
                             selected="<%=(maker._id.toString() === car.maker) ? 'true' : 'false'%>">
                             <%= maker.name%>
                         </option>
@@ -29,9 +29,9 @@
                 <option  value="" selected="true">Select a Type</option>
                 <% all_type.forEach(type => { %>
                     <% if (undefined !== typeof(car)) { %>
-                        <option value="<%=type.name%>"><%= type.name%></option>
+                        <option value="<%=type.id%>"><%= type.name%></option>
                     <% } else { %>
-                        <option value="<%=type.name%>"
+                        <option value="<%=type.id%>"
                             selected="<%=(type._id.toString() === car.maker) ? 'true' : 'false'%>">
                             <%= type.name%>
                         </option>
