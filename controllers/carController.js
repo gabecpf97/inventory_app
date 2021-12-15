@@ -146,6 +146,36 @@ exports.car_delete_post = (req, res, next) => {
             if (err)
                 return next(err);
             res.redirect('/cars');
-        })
+        });
     })
+}
+
+exports.car_update_get = (req, res, next) => {
+    async.parallel({
+        car: (callback) => {
+            Car.findById(req.params.id).populate('maker').populate('type')
+            .exec(callback);
+        },
+        maker: (callback) => {
+            Maker.find(callback);
+        },
+        type: (callback) => {
+            Type.find(callback);
+        }
+    }, (err, results) => {
+        if (err)
+            return next(err);
+        if (results.car === null) {
+            const err = new Error('No such car');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('index', {title: 'Update Car', page:'./car_form', 
+                    content: {
+                        title: 'Update Car',
+                        car: results.car,
+                        all_maker: results.maker,
+                        all_type: results.type
+                    }});
+    });
 }

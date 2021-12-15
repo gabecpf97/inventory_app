@@ -5,20 +5,21 @@
             <label for="name">Car Model Name</label>
             <input type="text" placeholder="Model Name" 
                     name="name" required="true"
-                    value="<%= (undefined === typeof(car)) ? car.name : '' %>">
+                    value="<%= ('undefined' === typeof(car)) ? '' : car.name %>">
         </div>
         <div class="getMaker">
             <label for="maker">Car Maker</label>
             <select type="select" name="maker" required="true">
                 <option  value="" selected="true">Select a Maker</option>
                 <% all_maker.forEach(maker => { %>
-                    <% if (undefined !== typeof(car)) { %>
+                    <% if ('undefined' === typeof(car)) { %>
                         <option value="<%=maker.id%>"><%= maker.name%></option>
-                    <% } else { %>
-                        <option value="<%=maker.id%>"
-                            selected="<%=(maker._id.toString() === car.maker) ? 'true' : 'false'%>">
-                            <%= maker.name%>
-                        </option>
+                        <% } else { %>
+                            <% if (maker._id.toString() == car.maker._id) { %>
+                                <option value="<%=maker.id%>" selected><%= maker.name%></option>
+                            <% } else { %>
+                                <option value="<%=maker.id%>"><%= maker.name%></option>
+                            <% } %>
                     <% } %>
                 <% }); %>
             </select>
@@ -28,13 +29,14 @@
             <select type="select" name="type" required="true">
                 <option  value="" selected="true">Select a Type</option>
                 <% all_type.forEach(type => { %>
-                    <% if (undefined !== typeof(car)) { %>
+                    <% if ('undefined' === typeof(car)) { %>
                         <option value="<%=type.id%>"><%= type.name%></option>
                     <% } else { %>
-                        <option value="<%=type.id%>"
-                            selected="<%=(type._id.toString() === car.maker) ? 'true' : 'false'%>">
-                            <%= type.name%>
-                        </option>
+                        <% if (type._id.toString() == car.type._id) { %>
+                            <option value="<%=type.id%>" selected><%= type.name%></option>
+                        <% } else { %>
+                            <option value="<%=type.id%>"><%= type.name%></option>
+                        <% } %>
                     <% } %>
                 <% }); %>
             </select>
@@ -42,27 +44,27 @@
         <div class="getPrice">
             <label for="price">Car Price(MSRP)</label>
             <input type="number" placeholder="MSRP $" name="price" required="true"
-                value="<%= (undefined === typeof(car)) ? car.price : '' %>">
+                value="<%= ('undefined' === typeof(car)) ? '' : car.price %>">
         </div>
         <div class="getDescription">
             <label for="description">Car Description</label>
-            <textarea name="description" placeholder="Enter car's description" required="true">
-                <%=(undefined === typeof(car)) ? car.des : ''%>
+            <textarea name="description" placeholder="Enter car's description" 
+            required="true"><%=('undefined' === typeof(car)) ?  '' : car.description %>
             </textarea>
         </div>
         <div class="getYear">
             <label for="release_year">Released Year</label>
             <input type="number" placeholder="YYYY" name="release_year" required="true"
-                value="<%= (undefined === typeof(car)) ? car.release_year: 2000 %>">
+                value="<%= ('undefined' === typeof(car)) ? 2000 : car.release_year %>">
         </div>
         <div class="getInStock">
             <label for="number_in_stock">Number in stocks</label>
             <input type="number" placeholder="amount in stock" name="number_in_stock"
-                required="true" value="<%= (undefined === typeof(car)) ? car.release_year: 0 %>">
+                required="true" value="<%= ('undefined' === typeof(car)) ?  0 : car.number_in_stock %>">
         </div>
         <input type="submit" value="Submit">
     </form>
-    <% if (undefined === typeof(errors)) { %>
+    <% if ('undefined' !== typeof(errors)) { %>
         <ul>
             <% errors.forEach(error => { %>
                 <li><%= error.msg %></li>
