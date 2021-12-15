@@ -121,3 +121,31 @@ exports.car_create_post = [
         }
     }
 ]
+
+exports.car_delete_get = (req, res, next) => {
+    Car.findById(req.params.id).populate('maker').populate('type')
+    .exec((err, theCar) => {
+        if (err)
+            return next(err);
+        if (theCar === null)
+            res.redirect('/cars');
+        res.render('index', {title: 'Delete Car', page: './car_delete', 
+                    content:{
+                        title: 'Delete Car',
+                        car: theCar,
+                    }});
+    })
+}
+
+exports.car_delete_post = (req, res, next) => {
+    Car.findById(req.params.id)
+    .exec((err, theCar) => {
+        if (err)
+            return next(err);
+        Car.findByIdAndRemove(req.body.carid, (err) => {
+            if (err)
+                return next(err);
+            res.redirect('/cars');
+        })
+    })
+}
