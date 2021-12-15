@@ -1,0 +1,12 @@
+<div class="detail">
+    <h1><%=car.name%></h1>
+    <h2><%=car.release_year%></h2>
+    <h2><%=car.price%></h2>
+    <h2><%=car.number_in_stock%></h2>
+    <a href="<%=car.maker.url%>"><%=car.maker.name%></a>
+    <a href="<%=car.type.url%>"><%=car.type.name%></a>
+    <% if (typeof(car.picture) !== undefined) { %>
+        <h2><%=car.picture%></h2>
+    <% } %>
+    <p><%=car.description%></p>
+</div>

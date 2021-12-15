@@ -9,7 +9,7 @@ const TypeSchema = new Schema(
 );
 
 TypeSchema.virtual('url').get(function() {
-    return '/types/' + this._id;
+    return '/type/' + this._id;
 });
 
 module.exports = mongoose.model('Type', TypeSchema);

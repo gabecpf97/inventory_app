@@ -6,12 +6,12 @@ const MakerSchema = new Schema(
     {
         name: {type: String, require: true},
         established_year: {type: Number, required: true},
-        logo: {type: String, require: true},
+        logo: {type: String},
     }
 );
 
 MakerSchema.virtual('url').get(function() {
-    return '/makers/' + this._id;
+    return '/maker/' + this._id;
 });
 
 MakerSchema.virtual('pretty_date').get(function() {

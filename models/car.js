@@ -7,7 +7,7 @@ const CarSchema = new Schema(
         maker: {type: Schema.Types.ObjectId, ref: 'Maker', required:true},
         type: {type: Schema.Types.ObjectId, ref: 'Type', required:true},
         price: {type: Number, required: true},
-        picture: {type: String, required:true},
+        picture: {type: String},
         description: {type: String, required: true},
         release_year: {type: Number, required:true},
         number_in_stock: {type: Number, required: true}
@@ -15,7 +15,7 @@ const CarSchema = new Schema(
 );
 
 CarSchema.virtual('url').get(function() {
-    return '/cars/' + this._id;
+    return '/car/' + this._id;
 });
 
 module.exports = mongoose.model('Car', CarSchema);
