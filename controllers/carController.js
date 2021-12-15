@@ -91,33 +91,33 @@ exports.car_create_post = [
                 release_year: req.body.release_year,
                 number_in_stock: req.body.number_in_stock
             }
-        )
-        if (!errors.isEmpty()) {
-            async.parallel({
-                maker: (callback) => {
-                    Maker.find(callback);
-                },
-                type: (callback) => {
-                    Type.find(callback);
-                },
-            }, (err, results) => {
-                res.render('index', {
-                    title: 'Create Car',
-                    page: './car_form',
-                    content: {
+            )
+            if (!errors.isEmpty()) {
+                async.parallel({
+                    maker: (callback) => {
+                        Maker.find(callback);
+                    },
+                    type: (callback) => {
+                        Type.find(callback);
+                    },
+                }, (err, results) => {
+                    res.render('index', {
                         title: 'Create Car',
-                        all_maker: results.maker,
-                        all_type: results.type
-                    }
+                        page: './car_form',
+                        content: {
+                            title: 'Create Car',
+                            all_maker: results.maker,
+                            all_type: results.type
+                        }
+                    });
                 });
-            });
-            return;
-        } else {
-            car.save((err) => {
-                if (err)
+                return;
+            } else {
+                car.save((err) => {
+                    if (err)
                     return next(err);
-                res.redirect(car.url);
-            })
+                    res.redirect(car.url);
+                })
         }
     }
 ]
@@ -126,14 +126,14 @@ exports.car_delete_get = (req, res, next) => {
     Car.findById(req.params.id).populate('maker').populate('type')
     .exec((err, theCar) => {
         if (err)
-            return next(err);
+        return next(err);
         if (theCar === null)
-            res.redirect('/cars');
+        res.redirect('/cars');
         res.render('index', {title: 'Delete Car', page: './car_delete', 
-                    content:{
-                        title: 'Delete Car',
-                        car: theCar,
-                    }});
+        content:{
+            title: 'Delete Car',
+            car: theCar,
+        }});
     })
 }
 
@@ -141,10 +141,10 @@ exports.car_delete_post = (req, res, next) => {
     Car.findById(req.params.id)
     .exec((err, theCar) => {
         if (err)
-            return next(err);
+        return next(err);
         Car.findByIdAndRemove(req.body.carid, (err) => {
             if (err)
-                return next(err);
+            return next(err);
             res.redirect('/cars');
         });
     })
@@ -164,18 +164,63 @@ exports.car_update_get = (req, res, next) => {
         }
     }, (err, results) => {
         if (err)
-            return next(err);
+        return next(err);
         if (results.car === null) {
             const err = new Error('No such car');
             err.status = 404;
             return next(err);
         }
         res.render('index', {title: 'Update Car', page:'./car_form', 
-                    content: {
-                        title: 'Update Car',
-                        car: results.car,
-                        all_maker: results.maker,
-                        all_type: results.type
-                    }});
+        content: {
+            title: 'Update Car',
+            car: results.car,
+            all_maker: results.maker,
+            all_type: results.type
+        }});
     });
 }
+
+exports.car_update_post = [
+    body('name', 'Name must not be empty.').trim().isLength({min: 1}).escape(),
+    body('price', 'Price must not be empty.').trim().isLength({min: 1}).escape(),
+    body('description', 'Description must not be empty.').trim().isLength({min: 1}).escape(),
+    body('release_year', 'Released Year must not be empty.').trim().isLength({min: 1}).escape(),
+    body('number_in_stock', 'Number in stock must not be empty.').trim().isLength({min: 1}).escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        const car = new Car(
+            {
+                name: req.body.name,
+                maker: req.body.maker,
+                type: req.body.type,
+                price: req.body.price,
+                description: req.body.description,
+                release_year: req.body.release_year,
+                number_in_stock: req.body.number_in_stock,
+                picture: req.body.picture
+            }
+            )
+            if (!errors.isEmpty()) {
+                async.parallel({
+                    maker: (callback) => {
+                        Maker.find(callback);
+                    },
+                    type: (callback) => {
+                        Type.find(callback);
+                    },
+                }, (err, results) => {
+                    res.render('index', {
+                        title: 'Create Car',
+                        page: './car_form',
+                        content: {
+                            title: 'Create Car',
+                            all_maker: results.maker,
+                            all_type: results.type
+                        }
+                    });
+                });
+            } else {
+
+            }
+    }
+]

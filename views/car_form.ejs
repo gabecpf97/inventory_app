@@ -62,6 +62,13 @@
             <input type="number" placeholder="amount in stock" name="number_in_stock"
                 required="true" value="<%= ('undefined' === typeof(car)) ?  0 : car.number_in_stock %>">
         </div>
+        <div class="getPicture">
+            <!-- <label for="picture">Picture Url</label>
+            <input type="text" placeholder="url for picture" name="picture" required="true" 
+                value="<%= ('undefined' === typeof(car)) ?  '' : (car.picture === 'undefined') ? '' : car.picture %>"> -->
+            <input type="hidden" name="picture" 
+                value="<%= ('undefined' === typeof(car)) ?  '' : (car.picture === 'undefined') ? '' : car.picture %>">>
+        </div>
         <input type="submit" value="Submit">
     </form>
     <% if ('undefined' !== typeof(errors)) { %>
