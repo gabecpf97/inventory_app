@@ -197,30 +197,37 @@ exports.car_update_post = [
                 description: req.body.description,
                 release_year: req.body.release_year,
                 number_in_stock: req.body.number_in_stock,
-                picture: req.body.picture
+                _id:req.params.id
             }
-            )
-            if (!errors.isEmpty()) {
-                async.parallel({
-                    maker: (callback) => {
-                        Maker.find(callback);
-                    },
-                    type: (callback) => {
-                        Type.find(callback);
-                    },
-                }, (err, results) => {
-                    res.render('index', {
+        );
+        if (req.body.picture !== '')
+            car.picture = req.body.picture;
+        if (!errors.isEmpty()) {
+            async.parallel({
+                maker: (callback) => {
+                    Maker.find(callback);
+                },
+                type: (callback) => {
+                    Type.find(callback);
+                },
+            }, (err, results) => {
+                res.render('index', {
+                    title: 'Create Car',
+                    page: './car_form',
+                    content: {
                         title: 'Create Car',
-                        page: './car_form',
-                        content: {
-                            title: 'Create Car',
-                            all_maker: results.maker,
-                            all_type: results.type
-                        }
-                    });
+                        all_maker: results.maker,
+                        all_type: results.type
+                    }
                 });
-            } else {
-
-            }
+            });
+            return;
+        } else {
+            Car.findByIdAndUpdate(req.params.id, car, {}, (err, theCar) => {
+                if (err)
+                    return next(err);
+                res.redirect(theCar.url);
+            })
+        }
     }
 ]
