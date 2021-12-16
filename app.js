@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -10,8 +12,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 const mongoose = require('mongoose');
-const dev_db_url = 'mongodb+srv://admin:my_inventory@cluster0.lcnko.mongodb.net/inventory?retryWrites=true&w=majority';
-const mongoDB = dev_db_url;
+const mongoDB = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lcnko.mongodb.net/inventory?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
