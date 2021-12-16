@@ -1,0 +1,8 @@
+<div class="type_delete">
+    <h1>Type Delete</h1>
+    <p><%= `Really Want to Delete ${type.name}?` %></p>
+    <form method="POST" action="">
+        <input type="hidden" name="typeid" value="<%= type._id %>">
+        <input type="submit" value="Delete">
+    </form>
+</div>

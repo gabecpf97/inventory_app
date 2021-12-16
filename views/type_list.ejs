@@ -1,0 +1,13 @@
+<div class="type_list">
+    <h1><%= title %></h1>
+    <a href="type/create">Create Type</a>
+    <ul class="types">
+        <% type_list.forEach(type => { %>
+            <li>
+                <div class="type">
+                    <a href="<%= type.url %>"><%=type.name%></a>
+                </div>
+            </li>
+        <% }) %>
+    </ul>
+</div>

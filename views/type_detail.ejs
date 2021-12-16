@@ -1,0 +1,18 @@
+<div class="type_detail">
+    <h1><%= type.name %></h1>
+    <p><%= type.description %></p>
+    <ul class="type_cars">
+        <% cars.forEach(car => { %> 
+            <li>
+                <div class="type_car">
+                    <a href="<%= car.url %>"><%= car.name %></a>
+                    <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
+                </div>    
+            </li>
+        <% }) %>
+    </ul>
+    <div class="delete_update">
+        <a href="<%= `${type.url}/delete` %>">Delete type</a>
+        <a href="<%= `${type.url}/update` %>">Update type</a>
+    </div>
+</div>

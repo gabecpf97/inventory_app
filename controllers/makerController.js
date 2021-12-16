@@ -126,6 +126,7 @@ exports.maker_update_post = [
             {
                 name: req.body.name,
                 established_year: req.body.established_year,
+                _id: req.params.id
             }
         );
         if (req.body.logo !== '')
@@ -134,14 +135,15 @@ exports.maker_update_post = [
             res.render('index', {title: 'Update Maker', page: './maker_form',
                                 content: {
                                     title: 'Update Maker',
-                                    maker: theMaker
+                                    maker: theMaker,
+                                    errors: errors
                         }});
             return;
         } else {
-            maker.save((err) => {
+            Maker.findByIdAndUpdate(req.params.id, maker, {}, (err, theMaker) => {
                 if (err)
                     return next(err);
-                res.redirect(maker.url);
+                res.redirect(theMaker.url);
             })
         }
     }]

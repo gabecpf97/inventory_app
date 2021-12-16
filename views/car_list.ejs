@@ -4,9 +4,8 @@
     <ul class="cars">
         <% car_list.forEach(car => { %>
             <a href="<%=car.url%>"><%= car.name %></a>
-            <p><%= car.maker.name %></p>
-            <p><%= car.type.name %></p>
-            <p><%= car.picture %></p>
+            <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
+            <a href="<%= car.type.url %>"><%= car.type.name %></a>
             <p><%= car.number_in_stock %></p>
         <% }); %>
     </ul>

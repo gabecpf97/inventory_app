@@ -17,4 +17,11 @@
                 value="<%= (typeof(maker) === 'undefined') ? '' : maker.logo %>">
         <input type="submit" value="Submit">
     </form>
+    <% if ('undefined' !== typeof(errors)) { %>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
 </div>

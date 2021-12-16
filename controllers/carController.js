@@ -216,7 +216,8 @@ exports.car_update_post = [
                     content: {
                         title: 'Create Car',
                         all_maker: results.maker,
-                        all_type: results.type
+                        all_type: results.type,
+                        car: car,
                     }
                 });
             });
