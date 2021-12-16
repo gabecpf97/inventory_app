@@ -1,0 +1,17 @@
+<div class="maker_detail">
+    <h1><%=maker.name%></h1>
+    <div class="detail">
+        <p><%=maker.established_year%></p>
+        <p><%=maker.logo%></p>
+    </div>
+    <div class="maker_cars">
+        <% cars.forEach(car => { %>
+            <a href="<%=car.url%>"><%=car.name%></a>
+            <a href="<%=car.type.url%>"><%=car.type.name%></a>
+        <% }); %>
+    </div>
+    <div class="delete_update">
+        <a href="<%= `${maker.url}/delete` %>">Delete This Maker</a>
+        <a href="<%= `${maker.url}/update` %>">Update This Maker</a>
+    </div>
+</div>

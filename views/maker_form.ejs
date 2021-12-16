@@ -1,0 +1,20 @@
+<div class="maker_form">
+    <h1><%=title%></h1>
+    <form method="POST" action="">
+        <div class="getName">
+            <label for="name">Maker Brand Name</label>
+            <input type="text" placeholder="Brand name"
+                    name="name" required="true"
+                    value="<%= (typeof(maker) === 'undefined') ? '' : maker.name %>">
+        </div>
+        <div class="getEstablishedYear">
+            <label for="established_year">Established in</label>
+            <input type="number" placeholder="YYYY"
+                    name="established_year" required='true'
+                    value="<%= (typeof(maker) === 'undefined') ? '' : maker.established_year %>">
+        </div>
+        <input type="hidden" name="logo"
+                value="<%= (typeof(maker) === 'undefined') ? '' : maker.logo %>">
+        <input type="submit" value="Submit">
+    </form>
+</div>

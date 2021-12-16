@@ -18,8 +18,7 @@ exports.car_list = (req, res, next) => {
     .populate('maker').populate('type')
     .exec((err, list_car) => {
         if (err)
-            return async.nextTick(err);
-        // res.render('car_list', {title: 'All Cars', car_list: list_car});
+            return next(err);
         res.render('index', {
             title: "All Cars",
             page: './car_list',
@@ -126,14 +125,14 @@ exports.car_delete_get = (req, res, next) => {
     Car.findById(req.params.id).populate('maker').populate('type')
     .exec((err, theCar) => {
         if (err)
-        return next(err);
+            return next(err);
         if (theCar === null)
-        res.redirect('/cars');
+            res.redirect('/cars');
         res.render('index', {title: 'Delete Car', page: './car_delete', 
-        content:{
-            title: 'Delete Car',
-            car: theCar,
-        }});
+                            content:{
+                                title: 'Delete Car',
+                                car: theCar,
+                            }});
     })
 }
 

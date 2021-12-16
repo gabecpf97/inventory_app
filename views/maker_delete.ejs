@@ -1,0 +1,8 @@
+<div class="maker_delete">
+    <h1>Delete Maker</h1>
+    <p><%= `Really want to delete ${maker.name} from Inventory?` %></p>
+    <form method="POST" action="">
+        <input type="hidden" name="makerid" required="true" value="<%=maker.id%>">
+        <input type="submit" value="Delete">
+    </form>
+</div>
