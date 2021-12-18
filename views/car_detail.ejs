@@ -5,8 +5,8 @@
     <h2><%=car.number_in_stock%></h2>
     <a href="<%=car.maker.url%>"><%=car.maker.name%></a>
     <a href="<%=car.type.url%>"><%=car.type.name%></a>
-    <% if (typeof(car.picture) !== undefined) { %>
-        <h2><%=car.picture%></h2>
+    <% if (typeof(car.picture) !== 'undefined') { %>
+        <img src="data:image/<%=car.picture.content_type%>;base64,<%=car.picture.data.toString('base64')%>">
     <% } %>
     <p><%=car.description%></p>
     <div class="delete_update">

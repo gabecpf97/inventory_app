@@ -7,7 +7,7 @@ const CarSchema = new Schema(
         maker: {type: Schema.Types.ObjectId, ref: 'Maker', required:true},
         type: {type: Schema.Types.ObjectId, ref: 'Type', required:true},
         price: {type: Number, required: true},
-        picture: {type: String},
+        picture: {type: Schema.Types.ObjectId, ref: 'Image'},
         description: {type: String, required: true},
         release_year: {type: Number, required:true},
         number_in_stock: {type: Number, required: true}

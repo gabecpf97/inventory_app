@@ -1,8 +1,11 @@
 const Car = require('../models/car');
 const Maker = require('../models/maker');
 const Type = require('../models/type');
+const Image = require('../models/image');
 const { body, validationResult } = require('express-validator');
 const async = require('async');
+const fs = require('fs');
+const path = require('path');
 
 exports.index = (req, res) => {
     res.render('index', {
@@ -31,7 +34,7 @@ exports.car_list = (req, res, next) => {
 }
 
 exports.car_detail = (req, res, next) => {
-    Car.findById(req.params.id).populate('maker').populate('type')
+    Car.findById(req.params.id).populate('maker').populate('type').populate('picture')
     .exec((err, theCar) => {
         if (err)
             return next(err);
@@ -80,17 +83,32 @@ exports.car_create_post = [
     body('number_in_stock', 'Number in stock must not be empty.').trim().isLength({min: 1}).escape(),
     (req, res, next) => {
         const errors = validationResult(req);
-        const car = new Car(
-            {
-                name: req.body.name,
-                maker: req.body.maker,
-                type: req.body.type,
-                price: req.body.price,
-                description: req.body.description,
-                release_year: req.body.release_year,
-                number_in_stock: req.body.number_in_stock
+        async.parallel({
+            image: (callback) => {
+                const img = new Image({
+                    data: fs.readFileSync(path.join(__dirname, '../uploads/', req.file.filename)),
+                    content_type: 'image/jpg',
+                });
+                img.save((err) => {
+                    if (err)
+                        return next(err);
+                    callback(null, img);
+                });
+            },
+            car: (callback) => {
+                callback(null, new Car({
+                        name: req.body.name,
+                        maker: req.body.maker,
+                        type: req.body.type,
+                        price: req.body.price,
+                        description: req.body.description,
+                        release_year: req.body.release_year,
+                        number_in_stock: req.body.number_in_stock
+                }));
             }
-            )
+        }, (err, results) => {
+            const car = results.car;
+            car.picture = results.image;
             if (!errors.isEmpty()) {
                 async.parallel({
                     maker: (callback) => {
@@ -99,14 +117,14 @@ exports.car_create_post = [
                     type: (callback) => {
                         Type.find(callback);
                     },
-                }, (err, results) => {
+            }, (err, thisResults) => {
                     res.render('index', {
                         title: 'Create Car',
                         page: './car_form',
                         content: {
                             title: 'Create Car',
-                            all_maker: results.maker,
-                            all_type: results.type
+                            all_maker: thisResults.maker,
+                            all_type: thisResults.type
                         }
                     });
                 });
@@ -116,8 +134,48 @@ exports.car_create_post = [
                     if (err)
                     return next(err);
                     res.redirect(car.url);
-                })
-        }
+                });
+            }
+        });
+
+        // const car = new Car(
+        //     {
+        //         name: req.body.name,
+        //         maker: req.body.maker,
+        //         type: req.body.type,
+        //         price: req.body.price,
+        //         description: req.body.description,
+        //         release_year: req.body.release_year,
+        //         number_in_stock: req.body.number_in_stock
+        //     }
+        //     )
+        //     if (!errors.isEmpty()) {
+        //         async.parallel({
+        //             maker: (callback) => {
+        //                 Maker.find(callback);
+        //             },
+        //             type: (callback) => {
+        //                 Type.find(callback);
+        //             },
+        //         }, (err, results) => {
+        //             res.render('index', {
+        //                 title: 'Create Car',
+        //                 page: './car_form',
+        //                 content: {
+        //                     title: 'Create Car',
+        //                     all_maker: results.maker,
+        //                     all_type: results.type
+        //                 }
+        //             });
+        //         });
+        //         return;
+        //     } else {
+        //         car.save((err) => {
+        //             if (err)
+        //             return next(err);
+        //             res.redirect(car.url);
+        //     });
+        // }
     }
 ]
 

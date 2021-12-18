@@ -6,7 +6,7 @@ const MakerSchema = new Schema(
     {
         name: {type: String, require: true},
         established_year: {type: Number, required: true},
-        logo: {type: String},
+        logo: {type: Schema.Types.ObjectId, ref: 'Image'},
     }
 );
 

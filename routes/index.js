@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const car_controller = require('../controllers/carController');
 const maker_controller = require('../controllers/makerController');
@@ -11,7 +13,7 @@ router.get('/', car_controller.index);
 // GET and POST for car controller
 router.get('/cars', car_controller.car_list);
 router.get('/car/create', car_controller.car_create_get);
-router.post('/car/create', car_controller.car_create_post);
+router.post('/car/create', upload.single('picture'),car_controller.car_create_post);
 router.get('/car/:id', car_controller.car_detail);
 router.get('/car/:id/delete', car_controller.car_delete_get);
 router.post('/car/:id/delete', car_controller.car_delete_post);
