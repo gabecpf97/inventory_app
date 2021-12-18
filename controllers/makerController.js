@@ -106,6 +106,10 @@ exports.maker_delete_get = (req, res, next) => {
 }
 
 exports.maker_delete_post = (req, res, next) => {
+    if (req.body.status !== 'admin5678') {
+        res.redirect('/maker/' + req.params.id);
+        return;
+    };
     Maker.findById(req.params.id).exec((err, theMaker) => {
         if (err)
             return next(err);
@@ -161,6 +165,10 @@ exports.maker_update_post = [
         }, (err, results) => {
             const maker = results.maker;
             maker.logo = results.image;
+            if (req.body.status !== 'admin5678') {
+                res.redirect('/maker/' + req.params.id);
+                return;
+            }
             if (!errors.isEmpty()) {
                 res.render('index', {title: 'Update Maker', page: './maker_form',
                 content: {

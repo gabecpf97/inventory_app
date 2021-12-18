@@ -1,8 +1,13 @@
 <div class="delete_car">
     <h1><%=title%></h1>
+    <h1>Only admin can delete</h1> 
     <p>Really delete This car?</p>
     <form method="POST" action="">
         <input type="hidden", name="carid", required="true", value="<%=car.id%>">
+        <div class="getStatus">
+            <label for="status">Enter admin password</label>
+            <input type="text" name="status">
+        </div>
         <input type="submit" value="Delete">
     </form>
 </div>

@@ -1,5 +1,8 @@
 <div class="car_form">
     <h1>Create Form</h1>
+    <% if (typeof(car) !== 'undefined') { %> 
+        <h1>Only admin can update</h1> 
+    <% } %>
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="getName">
             <label for="name">Car Model Name</label>
@@ -64,9 +67,15 @@
         </div>
         <div class="getPicture">
             <label for="picture">Chose a file to upload</label>
-            <input type="file" name="picture" 
+            <input type="file" name="picture" required="true"
                 value="<%= ('undefined' === typeof(car)) ?  '' : (car.picture === 'undefined') ? '' : car.picture %>">
         </div>
+        <% if (typeof(car) !== 'undefined') { %>
+            <div class="getStatus">
+                <label for="status">Enter admin password</label>
+                <input type="text" name="status">
+            </div>
+        <% } %>
         <input type="submit" value="Submit">
     </form>
     <% if ('undefined' !== typeof(errors)) { %>

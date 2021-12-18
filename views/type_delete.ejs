@@ -1,8 +1,13 @@
 <div class="type_delete">
     <h1>Type Delete</h1>
+    <h1>Only admin can delete</h1> 
     <p><%= `Really Want to Delete ${type.name}?` %></p>
     <form method="POST" action="">
         <input type="hidden" name="typeid" value="<%= type._id %>">
+        <div class="getStatus">
+            <label for="status">Enter admin password</label>
+            <input type="text" name="status">
+        </div>
         <input type="submit" value="Delete">
     </form>
 </div>

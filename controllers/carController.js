@@ -124,7 +124,8 @@ exports.car_create_post = [
                         content: {
                             title: 'Create Car',
                             all_maker: thisResults.maker,
-                            all_type: thisResults.type
+                            all_type: thisResults.type,
+                            errors: errors.array()
                         }
                     });
                 });
@@ -156,6 +157,10 @@ exports.car_delete_get = (req, res, next) => {
 }
 
 exports.car_delete_post = (req, res, next) => {
+    if (req.body.status !== 'admin5678') {
+        res.redirect('/car/' + req.params.id);
+        return;
+    }
     Car.findById(req.params.id)
     .exec((err, theCar) => {
         if (err)
@@ -233,6 +238,10 @@ exports.car_update_post = [
         }, (err, results) => {
             const car = results.car;
             car.picture = results.image;
+            if (req.body.status !== 'admin5678') {
+                res.redirect('/car/' + req.params.id);
+                return;
+            }
             if (!errors.isEmpty()) {
                 async.parallel({
                     maker: (callback) => {
@@ -250,6 +259,7 @@ exports.car_update_post = [
                             all_maker: results.maker,
                             all_type: results.type,
                             car: car,
+                            errors: errors.array()
                         }
                     });
                 });

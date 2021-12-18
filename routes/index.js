@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'uploads/' ,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype.substring(0, file.mimetype.indexOf('/')) === 'image') {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Please only upload images file, Click back'));
+        }
+}});
 
 const car_controller = require('../controllers/carController');
 const maker_controller = require('../controllers/makerController');

@@ -82,6 +82,10 @@ exports.type_delete_get = (req, res, next) => {
 }
 
 exports.type_delete_post = (req, res, next) => {
+    if (req.body.status !== 'admin5678') {
+        res.redirect('/type/' + req.params.id);
+        return;
+    };
     Type.findById(req.params.id).exec((err, theType) => {
         if (err)
             return next(err);
@@ -120,7 +124,11 @@ exports.type_update_post = [
             name: req.body.name,
             description: req.body.description,
             _id: req.params.id
-        })
+        });
+        if (req.body.status !== 'admin5678') {
+            res.redirect('/type/' + req.params.id);
+            return;
+        };
         if (!errors.isEmpty()) {
             res.render('index', {title: 'Create Type', page: './type_form',
                                 content: {
