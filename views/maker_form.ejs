@@ -1,6 +1,6 @@
 <div class="maker_form">
     <h1><%=title%></h1>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <div class="getName">
             <label for="name">Maker Brand Name</label>
             <input type="text" placeholder="Brand name"
@@ -13,8 +13,11 @@
                     name="established_year" required='true'
                     value="<%= (typeof(maker) === 'undefined') ? '' : maker.established_year %>">
         </div>
-        <input type="hidden" name="logo"
-                value="<%= (typeof(maker) === 'undefined') ? '' : maker.logo %>">
+        <div class="getLogo">
+            <label for="logo">Chose a file to upload</label>
+            <input type="file" name="logo"
+                    value="<%= (typeof(maker) === 'undefined') ? '' : maker.logo %>">
+        </div>
         <input type="submit" value="Submit">
     </form>
     <% if ('undefined' !== typeof(errors)) { %>

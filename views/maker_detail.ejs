@@ -2,7 +2,7 @@
     <h1><%=maker.name%></h1>
     <div class="detail">
         <p><%=maker.established_year%></p>
-        <p><%=maker.logo%></p>
+        <img src="data:image/<%=maker.logo.content_type%>;base64,<%=maker.logo.data.toString('base64')%>">
     </div>
     <div class="maker_cars">
         <% cars.forEach(car => { %>
