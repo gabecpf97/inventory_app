@@ -1,12 +1,16 @@
 <div class="content">
     <h1>All Cars</h1>
-    <a href="/car/create">Create car</a>
     <ul class="cars">
-        <% car_list.forEach(car => { %>
-            <a href="<%=car.url%>"><%= car.name %></a>
-            <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
-            <a href="<%= car.type.url %>"><%= car.type.name %></a>
-            <p><%= car.number_in_stock %></p>
-        <% }); %>
+        <div class="car_list">
+            <% car_list.forEach(car => { %>
+                <li>
+                    <a href="<%=car.url%>"><%= car.name %></a>
+                    <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
+                    <a href="<%= car.type.url %>"><%= car.type.name %></a>
+                    <p><%= car.number_in_stock %></p>
+                </li>
+            <% }); %>
+        </div>
+        <a class="toCreateCar" href="/car/create">Create Car</a>
     </ul>
 </div>

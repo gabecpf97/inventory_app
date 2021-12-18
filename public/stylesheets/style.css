@@ -1,8 +1,101 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #E5E7E9;
+  margin: 0px;
 }
 
 a {
-  color: #00B7FF;
+  color: #317d9b;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* nav bar */
+.nav_bar_div {
+  padding: 5px 10px;
+  background-color: rgb(139 172 177);
+}
+
+.nav_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  flex: 1;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.pages li {
+  border: powderblue solid;
+  padding: 10px;
+  background-color: rgb(110, 173, 182);
+}
+
+.pages a {
+  color: rgb(22, 13, 13);
+}
+
+/* car list */
+.cars {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  gap: 5px;
+}
+
+.toCreateCar {
+  font-size: 16px;
+  background-color: rgb(197, 173, 219);
+  padding: 5px;
+  border: rgb(199, 188, 39) solid;
+  background-color: rgb(226, 214, 36);
+  height: fit-content;
+}
+
+.car_list {
+  flex: 1;
+}
+
+.cars li {
+  width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 200px 100px 70px;
+  align-items: center;
+  justify-content: center;
+  border-style: none none none solid;
+  border-color: blueviolet;
+}
+
+.cars li:first-child {
+  border-style: solid none none solid;
+  border-color: blueviolet;
+}
+
+.cars li a,
+.cars p {
+  border-style: none solid solid none;
+  border-color: blueviolet;
+  margin: 0px;
+  padding: 5px;
 }
