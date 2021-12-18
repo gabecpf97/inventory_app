@@ -17,7 +17,8 @@ ul {
   padding-inline-start: 0px;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -35,6 +36,7 @@ h1 {
 
 .logo {
   flex: 1;
+  text-align: left;
 }
 
 .pages {
@@ -44,18 +46,38 @@ h1 {
   gap: 20px;
 }
 
-.pages li {
+.pages li,
+.delete_update a {
   border: powderblue solid;
   padding: 10px;
   background-color: rgb(110, 173, 182);
+  border-radius: 15px;
 }
 
-.pages a {
+.pages a,
+.delete_update a {
   color: rgb(22, 13, 13);
 }
 
-/* car list */
-.cars {
+/* home */
+.home {
+  text-align: center;
+}
+
+.home .info {
+  margin-bottom: 30px;
+}
+
+.home a {
+  border: powderblue solid;
+  padding: 10px;
+  background-color: rgb(110, 173, 182);
+  border-radius: 15px;
+  color: rgb(22, 13, 13);
+}
+
+/* all list */
+.list {
   padding: 50px;
   display: flex;
   justify-content: center;
@@ -63,7 +85,7 @@ h1 {
   gap: 5px;
 }
 
-.toCreateCar {
+.create {
   font-size: 16px;
   background-color: rgb(197, 173, 219);
   padding: 5px;
@@ -72,30 +94,134 @@ h1 {
   height: fit-content;
 }
 
-.car_list {
+.hold_list {
   flex: 1;
 }
 
-.cars li {
+.item {
   width: 100%;
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 200px 100px 70px;
   align-items: center;
   justify-content: center;
   border-style: none none none solid;
   border-color: blueviolet;
 }
 
-.cars li:first-child {
+.car_item {
+  grid-template-columns: 1fr 200px 100px 100px;
+}
+
+.maker_item {
+  grid-template-columns: 1fr 200px;
+}
+
+.type_item {
+  grid-template-columns: 1fr;
+}
+
+.item:first-child {
   border-style: solid none none solid;
   border-color: blueviolet;
 }
 
-.cars li a,
-.cars p {
+.list_header {
+  background-color: rgb(185, 145, 223);
+}
+
+.item a,
+.item p {
   border-style: none solid solid none;
   border-color: blueviolet;
   margin: 0px;
   padding: 5px;
+}
+
+/* Details */
+.detail_info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.detail a {
+  font-size: 18px;
+}
+
+.frame,
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.frame .picture,
+.description p {
+  width: 90vw;
+  max-width: 1200px;
+}
+
+.delete_update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.brand_logo {
+  height: 30vh;
+  max-height: 250px;
+}
+
+.type_car_item, 
+.maker_car_item {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+form div {
+  width: 90vw;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 40px;
+}
+
+.getFile input,
+form label {
+  align-self: center;
+}
+
+.getDescription {
+  height: 150px;
+}
+
+textarea {
+  resize: none;
+}
+
+.submit,
+.delete {
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.submit {
+  background-color: rgb(110, 173, 182);
+  color: rgb(22, 13, 13);
+}
+
+.delete {
+  background-color: brown;
+  color: aliceblue;
 }

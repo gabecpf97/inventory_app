@@ -1,17 +1,18 @@
 <div class="maker_list">
     <h1><%=title%></h1>
-    <a href="/maker/create">Create Maker</a>
-    <ul class="makers">
-        <% maker_list.forEach(maker => { %>
-            <li>
-                <a href="<%=maker.url%>">
-                    <div class="maker">
-                        <p><%=maker.name%></p>
-                        <p><%=maker.established_year%></p>
-                        <!-- <p><%=maker.logo%></p> -->
-                    </div>
-                </a>
+    <ul class="makers list">
+        <div class="maker_list hold_list">
+            <li class="list_header item maker_item">
+                <p>Brand</p>
+                <p>Established year</p>
             </li>
-        <% }); %>
+            <% maker_list.forEach(maker => { %>
+                <li class="item maker_item">
+                    <a href="<%=maker.url%>"><%=maker.name%></a>
+                    <p><%=maker.established_year%></p>
+                </li>
+            <% }); %>
+        </div>
+        <a class="toCreateMaker create" href="/maker/create">Create Maker</a>
     </ul>
 </div>

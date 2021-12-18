@@ -1,15 +1,25 @@
-<div class="maker_detail">
+<div class="maker_detail detail">
     <h1><%=maker.name%></h1>
-    <div class="detail">
-        <p><%=maker.established_year%></p>
-        <img src="data:image/<%=maker.logo.content_type%>;base64,<%=maker.logo.data.toString('base64')%>">
+    <div class="frame">
+        <img class="brand_logo" src="data:image/<%=maker.logo.content_type%>;base64,<%=maker.logo.data.toString('base64')%>">
     </div>
-    <div class="maker_cars">
-        <% cars.forEach(car => { %>
-            <a href="<%=car.url%>"><%=car.name%></a>
-            <a href="<%=car.type.url%>"><%=car.type.name%></a>
-        <% }); %>
+    <div class="detail_info">
+        <h2>Established year: <%=maker.established_year%></h2>
     </div>
+    <ul class="list">
+        <div class="maker_cars hold_list">
+            <li class="list_header item maker_car_item">
+                <p>Model Name</p>
+                <p>Type</p>
+            </li>
+            <% cars.forEach(car => { %>
+                <li class="item maker_car_item">
+                    <a href="<%=car.url%>"><%=car.name%></a>
+                    <a href="<%=car.type.url%>"><%=car.type.name%></a>
+                </li>
+            <% }); %>
+        </div>
+    </ul>
     <div class="delete_update">
         <a href="<%= `${maker.url}/delete` %>">Delete This Maker</a>
         <a href="<%= `${maker.url}/update` %>">Update This Maker</a>

@@ -16,7 +16,7 @@
                     name="established_year" required='true'
                     value="<%= (typeof(maker) === 'undefined') ? '' : maker.established_year %>">
         </div>
-        <div class="getLogo">
+        <div class="getLogo getFile">
             <label for="logo">Chose a file to upload</label>
             <input type="file" name="logo"
                     value="<%= (typeof(maker) === 'undefined') ? '' : maker.logo %>">
@@ -27,7 +27,7 @@
                 <input type="text" name="status">
             </div>
         <% } %>
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
     </form>
     <% if ('undefined' !== typeof(errors)) { %>
         <ul>

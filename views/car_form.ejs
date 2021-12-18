@@ -45,7 +45,7 @@
             </select>
         </div>
         <div class="getPrice">
-            <label for="price">Car Price(MSRP)</label>
+            <label for="price">Car Price(MSRP) $</label>
             <input type="number" placeholder="MSRP $" name="price" required="true"
                 value="<%= ('undefined' === typeof(car)) ? '' : car.price %>">
         </div>
@@ -65,7 +65,7 @@
             <input type="number" placeholder="amount in stock" name="number_in_stock"
                 required="true" value="<%= ('undefined' === typeof(car)) ?  0 : car.number_in_stock %>">
         </div>
-        <div class="getPicture">
+        <div class="getPicture getFile">
             <label for="picture">Chose a file to upload</label>
             <input type="file" name="picture" required="true"
                 value="<%= ('undefined' === typeof(car)) ?  '' : (car.picture === 'undefined') ? '' : car.picture %>">
@@ -76,7 +76,7 @@
                 <input type="text" name="status">
             </div>
         <% } %>
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
     </form>
     <% if ('undefined' !== typeof(errors)) { %>
         <ul>

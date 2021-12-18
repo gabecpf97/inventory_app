@@ -1,13 +1,13 @@
 <div class="maker_delete">
     <h1>Delete Maker</h1>
     <h1>Only admin can delete</h1> 
-    <p><%= `Really want to delete ${maker.name} from Inventory?` %></p>
+    <h2><%= `Really want to delete ${maker.name} from inventory?` %></h2>
     <form method="POST" action="">
         <input type="hidden" name="makerid" required="true" value="<%=maker.id%>">
         <div class="getStatus">
             <label for="status">Enter admin password</label>
             <input type="text" name="status">
         </div>
-        <input type="submit" value="Delete">
+        <input class="delete" type="submit" value="Delete">
     </form>
 </div>

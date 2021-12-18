@@ -1,14 +1,24 @@
-<div class="detail">
+<div class="car_detail detail">
     <h1><%=car.name%></h1>
-    <h2><%=car.release_year%></h2>
-    <h2><%=car.price%></h2>
-    <h2><%=car.number_in_stock%></h2>
-    <a href="<%=car.maker.url%>"><%=car.maker.name%></a>
-    <a href="<%=car.type.url%>"><%=car.type.name%></a>
+    <div class="detail_info car_info">
+        <h2>
+            Brand: <a href="<%=car.maker.url%>"><%=car.maker.name%></a>
+        </h2>
+        <h2>
+            Type: <a href="<%=car.type.url%>"><%=car.type.name%></a>
+        </h2>
+        <h2>Released year: <%=car.release_year%></h2>
+        <h2>MSRP: $<%=car.price%></h2>
+        <h2>Number in stock: <%=car.number_in_stock%></h2>
+    </div>
     <% if (typeof(car.picture) !== 'undefined') { %>
-        <img src="data:image/<%=car.picture.content_type%>;base64,<%=car.picture.data.toString('base64')%>">
+        <div class="frame">
+            <img class="picture" src="data:image/<%=car.picture.content_type%>;base64,<%=car.picture.data.toString('base64')%>">
+        </div>
     <% } %>
-    <p><%=car.description%></p>
+    <div class="description">
+        <p><%=car.description%></p>
+    </div>
     <div class="delete_update">
         <a href="<%=`${car.url}/delete`%>">Delete This Car</a>
         <a href="<%=`${car.url}/update`%>">Update This Car</a>

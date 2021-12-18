@@ -1,9 +1,15 @@
 <div class="content">
     <h1>All Cars</h1>
-    <ul class="cars">
-        <div class="car_list">
+    <ul class="cars list">
+        <div class="car_list hold_list">
+            <li class="list_header item car_item">
+                <p>Model Name</p>
+                <p>Maker</p>
+                <p>Type</p>
+                <p># in stock</p>
+            </li>
             <% car_list.forEach(car => { %>
-                <li>
+                <li class="item car_item">
                     <a href="<%=car.url%>"><%= car.name %></a>
                     <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
                     <a href="<%= car.type.url %>"><%= car.type.name %></a>
@@ -11,6 +17,6 @@
                 </li>
             <% }); %>
         </div>
-        <a class="toCreateCar" href="/car/create">Create Car</a>
+        <a class="toCreateCar create" href="/car/create">Create Car</a>
     </ul>
 </div>

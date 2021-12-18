@@ -1,13 +1,16 @@
 <div class="type_list">
     <h1><%= title %></h1>
-    <a href="type/create">Create Type</a>
-    <ul class="types">
-        <% type_list.forEach(type => { %>
-            <li>
-                <div class="type">
-                    <a href="<%= type.url %>"><%=type.name%></a>
-                </div>
+    <ul class="types list">
+        <div class="type_list hold_list">
+            <li class="list_header item type_item">
+                <p>Type</p>
             </li>
-        <% }) %>
+            <% type_list.forEach(type => { %>
+                <li class="item type_item">
+                    <a href="<%= type.url %>"><%=type.name%></a>
+                </li>
+            <% }) %>
+        </div>
+        <a class="toCreateType create" href="type/create">Create Type</a>
     </ul>
 </div>

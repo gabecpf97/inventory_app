@@ -1,15 +1,21 @@
-<div class="type_detail">
+<div class="type_detail detail">
     <h1><%= type.name %></h1>
-    <p><%= type.description %></p>
-    <ul class="type_cars">
-        <% cars.forEach(car => { %> 
-            <li>
-                <div class="type_car">
+    <div class="description">
+        <p><%= type.description %></p>
+    </div>
+    <ul class="type_cars list">
+        <div class="hold_list">
+            <li class="list_header item type_car_item">
+                <p>Model Name</p>
+                <p>Maker</p>
+            </li>
+            <% cars.forEach(car => { %> 
+                <li class="item type_car_item">
                     <a href="<%= car.url %>"><%= car.name %></a>
                     <a href="<%= car.maker.url %>"><%= car.maker.name %></a>
-                </div>    
-            </li>
-        <% }) %>
+                </li>
+            <% }) %>
+        </div>
     </ul>
     <div class="delete_update">
         <a href="<%= `${type.url}/delete` %>">Delete type</a>
